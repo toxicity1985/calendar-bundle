@@ -32,6 +32,5 @@
             "ADesigns\\CalendarBundle\\": "",
             "ADesigns\\CalendarBundle\\Tests\\": "Tests\\"
         }
-    },
-    "target-dir": "ADesigns/CalendarBundle"
+    }
 }
