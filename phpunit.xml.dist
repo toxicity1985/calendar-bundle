@@ -12,7 +12,8 @@
         bootstrap="vendor/autoload.php">
 
     <php>
-        <server name="KERNEL_DIR" value="./Tests/Fixtures/App" />
+        <env name="KERNEL_CLASS" value="ADesigns\CalendarBundle\Tests\Fixtures\App\AppKernel" />
+        <server name="KERNEL_DIR" value="Tests/Fixtures/App" />
     </php>
 
     <testsuites>

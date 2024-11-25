@@ -6,24 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CalendarControllerTest extends WebTestCase
 {
-    private $startTime;
-    private $endTime;
+    private \DateTimeImmutable $startTime;
+    private \DateTimeImmutable $endTime;
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
 
-        $this->startTime =  new \DateTime(CalendarEventListener::TEST_START_TIME);
-        $this->endTime =  new \DateTime(CalendarEventListener::TEST_END_TIME);
+        $this->startTime =  new \DateTimeImmutable(CalendarEventListener::TEST_START_TIME);
+        $this->endTime =  new \DateTimeImmutable(CalendarEventListener::TEST_END_TIME);
     }
 
     public function testLoadCalendarEmptyAction()
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fc-load-events', array(
+        $client->request('GET', '/fc-load-events', [
             'start' => $this->startTime->getTimestamp(),
             'end' => $this->startTime->getTimestamp()
-        ));
+        ]);
 
         $this->assertEquals('[]', $client->getResponse()->getContent());
     }
@@ -34,10 +34,10 @@ class CalendarControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/fc-load-events', array(
+        $client->request('GET', '/fc-load-events', [
             'start' => $this->startTime->getTimestamp(),
             'end' => $this->endTime->getTimestamp()
-        ));
+        ]);
 
         $response = json_decode($client->getResponse()->getContent());
 

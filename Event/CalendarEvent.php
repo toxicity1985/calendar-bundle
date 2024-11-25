@@ -2,7 +2,8 @@
 
 namespace ADesigns\CalendarBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use DateTimeImmutable;
+use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 
 use ADesigns\CalendarBundle\Entity\EventEntity;
@@ -27,10 +28,10 @@ class CalendarEvent extends Event
     /**
      * Constructor method requires a start and end time for event listeners to use.
      * 
-     * @param \DateTime $start Begin datetime to use
-     * @param \DateTime $end End datetime to use
+     * @param DateTimeImmutable $start Begin datetime to use
+     * @param DateTimeImmutable $end End datetime to use
      */
-    public function __construct(\DateTime $start, \DateTime $end, Request $request = null)
+    public function __construct(DateTimeImmutable $start, DateTimeImmutable $end, Request $request = null)
     {
         $this->startDatetime = $start;
         $this->endDatetime = $end;
@@ -49,7 +50,7 @@ class CalendarEvent extends Event
      * @param EventEntity $event
      * @return CalendarEvent $this
      */
-    public function addEvent(EventEntity $event)
+    public function addEvent(EventEntity $event): CalendarEvent
     {
         if (!$this->events->contains($event)) {
             $this->events[] = $event;
@@ -61,9 +62,9 @@ class CalendarEvent extends Event
     /**
      * Get start datetime 
      * 
-     * @return \DateTime
+     * @return DateTimeImmutable
      */
-    public function getStartDatetime()
+    public function getStartDatetime(): DateTimeImmutable
     {
         return $this->startDatetime;
     }
@@ -71,9 +72,9 @@ class CalendarEvent extends Event
     /**
      * Get end datetime 
      * 
-     * @return \DateTime
+     * @return DateTimeImmutable
      */
-    public function getEndDatetime()
+    public function getEndDatetime(): DateTimeImmutable
     {
         return $this->endDatetime;
     }
@@ -83,7 +84,7 @@ class CalendarEvent extends Event
      * 
      * @return Request
      */
-    public function getRequest()
+    public function getRequest(): Request
     {
         return $this->request;
     }

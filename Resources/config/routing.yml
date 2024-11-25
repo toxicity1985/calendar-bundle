@@ -1,5 +1,5 @@
 fullcalendar_loader:
     path: /fc-load-events
-    defaults: { _controller: ADesignsCalendarBundle:Calendar:loadCalendar }
+    defaults: { _controller: ADesigns\CalendarBundle\Controller\CalendarController::loadCalendarAction }
     options:
         expose: true

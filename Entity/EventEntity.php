@@ -40,12 +40,12 @@ class EventEntity
     protected $cssClass;
     
     /**
-     * @var \DateTime DateTime object of the event start date/time.
+     * @var \DateTimeImmutable DateTime object of the event start date/time.
      */
     protected $startDatetime;
     
     /**
-     * @var \DateTime DateTime object of the event end date/time.
+     * @var \DateTimeImmutable DateTime object of the event end date/time.
      */
     protected $endDatetime;
     
@@ -57,9 +57,9 @@ class EventEntity
     /**
      * @var array Non-standard fields
      */
-    protected $otherFields = array();
+    protected $otherFields = [];
     
-    public function __construct($title, \DateTime $startDatetime, \DateTime $endDatetime = null, $allDay = false)
+    public function __construct($title, \DateTimeImmutable $startDatetime, \DateTimeImmutable $endDatetime = null, $allDay = false)
     {
         $this->title = $title;
         $this->startDatetime = $startDatetime;
@@ -79,7 +79,7 @@ class EventEntity
      */
     public function toArray()
     {
-        $event = array();
+        $event = [];
         
         if ($this->id !== null) {
             $event['id'] = $this->id;
@@ -178,7 +178,7 @@ class EventEntity
         return $this->cssClass;
     }
     
-    public function setStartDatetime(\DateTime $start)
+    public function setStartDatetime(\DateTimeImmutable $start)
     {
         $this->startDatetime = $start;
     }
@@ -188,7 +188,7 @@ class EventEntity
         return $this->startDatetime;
     }
     
-    public function setEndDatetime(\DateTime $end)
+    public function setEndDatetime(\DateTimeImmutable $end)
     {
         $this->endDatetime = $end;
     }

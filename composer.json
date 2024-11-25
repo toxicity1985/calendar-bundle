@@ -13,21 +13,24 @@
         }
     ],
     "require": {
-        "symfony/twig-bundle": "~2.1|~3.0|~4.0",
-        "symfony/framework-bundle": "~2.1|~3.0|~4.0",
-        "friendsofsymfony/jsrouting-bundle": "~1.1|~2.0",
-        "doctrine/collections": "^1.0"
+        "php": ">=8.1",
+        "symfony/twig-bundle": "~6|~7",
+        "symfony/framework-bundle": "~6|~7",
+        "friendsofsymfony/jsrouting-bundle": "~3",
+        "doctrine/collections": "~2|~3",
+        "symfony/yaml": "^7.1"
     },
     "require-dev": {
-        "phpunit/phpunit" : "3.7.*",
-        "symfony/phpunit-bridge": "^2.7|~3.0",
-        "symfony/debug": "~2.3|~3.0",
-        "symfony/browser-kit" : "~2.3|~3.0",
-        "symfony/finder": "~2.3|~3.0"
+        "phpunit/phpunit" : "~10",
+        "symfony/phpunit-bridge": "~7.0",
+        "symfony/debug": "~2|~3",
+        "symfony/browser-kit" : "~6|~7",
+        "symfony/finder": "~6|~7"
     },
     "autoload": {
-        "psr-0": {
-            "ADesigns\\CalendarBundle": ""
+        "psr-4": {
+            "ADesigns\\CalendarBundle\\": "",
+            "ADesigns\\CalendarBundle\\Tests\\": "Tests\\"
         }
     },
     "target-dir": "ADesigns/CalendarBundle"

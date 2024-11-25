@@ -8,5 +8,12 @@
         <parameter key="fullcalendar.event.class">ADesigns\CalendarBundle\Entity\EventEntity</parameter>
         <parameter key="fullcalendar.loader.event">calendar.load_events</parameter>
     </parameters>
+
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+        <prototype namespace="ADesigns\CalendarBundle\" resource="/" exclude="/{DependencyInjection,Entity,Kernel.php}"/>
+    </services>
+
+
     
 </container>

@@ -2,14 +2,17 @@ CalendarBundle - jQuery FullCalendar bundle.
 ===============
 [![Latest Stable Version](https://poser.pugx.org/adesigns/calendar-bundle/v/stable)](https://packagist.org/packages/adesigns/calendar-bundle) [![Total Downloads](https://poser.pugx.org/adesigns/calendar-bundle/downloads)](https://packagist.org/packages/adesigns/calendar-bundle) [![Latest Unstable Version](https://poser.pugx.org/adesigns/calendar-bundle/v/unstable)](https://packagist.org/packages/adesigns/calendar-bundle) [![License](https://poser.pugx.org/adesigns/calendar-bundle/license)](https://packagist.org/packages/adesigns/calendar-bundle)
 
-This bundle allows you to integrate the [jQuery FullCalendar](http://arshaw.com/fullcalendar/) plugin into your Symfony2 application.
+This bundle allows you to integrate the [jQuery FullCalendar](http://arshaw.com/fullcalendar/) plugin into your Symfony2
+application.
 
 Once installed, this bundle will use event listeners to load events from any bundle in your application.
 
 Installation
 ------------
 
-Before installing, please note that this bundle has a dependency on the [FOSJsRouting](https://github.com/FriendsOfSymfony/FOSJsRoutingBundle) bundle to expose the calendar AJAX event loader route.  Please ensure that the FOSJsRouting bundle is installed and configured before continuing.
+Before installing, please note that this bundle has a dependency on
+the [FOSJsRouting](https://github.com/FriendsOfSymfony/FOSJsRoutingBundle) bundle to expose the calendar AJAX event
+loader route. Please ensure that the FOSJsRouting bundle is installed and configured before continuing.
 
 ### Through Composer (Symfony 2.1+):
 
@@ -26,10 +29,10 @@ Register the bundle in `app/AppKernel.php`:
 
 public function registerBundles()
 {
-    return array(
+    return [
         // ...
         new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
-    );
+    ];
 }
 ```
 
@@ -45,22 +48,26 @@ adesigns_calendar:
 Publish the assets:
 
     $ php app/console assets:install web
-    
+
 Usage
 -----
 
 Add the required stylesheet and javascripts to your layout:
 
-Stylesheet:    
+Stylesheet:
+
 ```
 <link rel="stylesheet" href="{{ asset('bundles/adesignscalendar/css/fullcalendar/fullcalendar.css') }}" />
 ```    
+
 Javascript:
+
 ```
 <script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/jquery/jquery-1.8.2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/fullcalendar/jquery.fullcalendar.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/adesignscalendar/js/calendar-settings.js') }}"></script>
 ```    
+
 Then, in the template where you wish to display the calendar, add the following twig:
 
 ```
@@ -70,9 +77,11 @@ Then, in the template where you wish to display the calendar, add the following 
 Adding Events
 -------------    
 
-The best part about this bundle is that you can add events to the calendar from any part of your application.  The calendar loads events via AJAX, and dispatches an event to load calendar events from your application.
+The best part about this bundle is that you can add events to the calendar from any part of your application. The
+calendar loads events via AJAX, and dispatches an event to load calendar events from your application.
 
-When a request is made to load events for a given start/end time, the bundle dispatches a `calendar.load_events` event.  Adding event listeners is an easy 2 step process
+When a request is made to load events for a given start/end time, the bundle dispatches a `calendar.load_events` event.
+Adding event listeners is an easy 2 step process
 
 Create an Event Listener class in your bundle:
 
@@ -116,12 +125,12 @@ class CalendarEventListener
 			              ->setParameter('endDate', $endDate->format('Y-m-d H:i:s'))
 			              ->getQuery()->getResult();
 
-	    // $companyEvents and $companyEvent in this example
-	    // represent entities from your database, NOT instances of EventEntity
-	    // within this bundle.
-	    //
-	    // Create EventEntity instances and populate it's properties with data
-	    // from your own entities/database values.
+	        // $companyEvents and $companyEvent in this example
+	        // represent entities from your database, NOT instances of EventEntity
+	        // within this bundle.
+	        //
+	        // Create EventEntity instances and populate it's properties with data
+	        // from your own entities/database values.
 	    
 		foreach($companyEvents as $companyEvent) {
 
@@ -149,6 +158,7 @@ class CalendarEventListener
 Additional properties and customization of each event on the calendar can be found in the Entity/EventEntity class.
 
 Then, add the listener to your services:
+
 ``` xml
 <?xml version="1.0" ?>
   <container xmlns="http://symfony.com/schema/dic/services">
@@ -163,14 +173,15 @@ Then, add the listener to your services:
   </container>
 ```
 
-And that's it!  When the `ADesignsCalendarBundle::calendar.html.twig` template is rendered, any events within the current month/day/year will be pulled from your application.
+And that's it!  When the `ADesignsCalendarBundle::calendar.html.twig` template is rendered, any events within the
+current month/day/year will be pulled from your application.
 
 
 Extending the Calendar Javascript
 -------------
 
-You may want to customize the FullCalendar javascript to meet your applications needs.  In order to do this, you can
-copy the calendar-settings.js in Resources/public/js, and modify it to fit your needs.  For instance, you can pass
+You may want to customize the FullCalendar javascript to meet your applications needs. In order to do this, you can
+copy the calendar-settings.js in Resources/public/js, and modify it to fit your needs. For instance, you can pass
 custom filters to your event listeners by adding extra parameters in the eventSources method:
 
 ``` javascript
