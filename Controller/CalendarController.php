@@ -25,7 +25,7 @@ class CalendarController extends AbstractController
         $endDatetime = new \DateTimeImmutable();
         $endDatetime->setTimestamp($request->get('end'));
 
-        $events = $eventDispatcher->dispatch(new CalendarEvent($startDatetime, $endDatetime, $request), CalendarEvent::CONFIGURE)->getEvents();
+        $events = $eventDispatcher->dispatch(new CalendarEvent($startDatetime, $endDatetime, $request))->getEvents();
 
         $response = new Response();
         $response->headers->set('Content-Type', 'application/json');

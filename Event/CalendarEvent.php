@@ -3,6 +3,7 @@
 namespace ADesigns\CalendarBundle\Event;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Contracts\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -36,7 +37,7 @@ class CalendarEvent extends Event
         $this->startDatetime = $start;
         $this->endDatetime = $end;
         $this->request = $request;
-        $this->events = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getEvents()
